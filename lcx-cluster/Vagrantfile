@@ -1,0 +1,19 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Number of nodes to provision
+  nodeCount = 4
+  
+  # Ubuntu 14.04 with LXC support
+  config.vm.box = "fgrehm/trusty64-lxc"
+
+  # Setup the nodes
+  1.upto(nodeCount) do |num|
+    nodeName = ("node-%02x" % (num - 1)).to_sym
+    config.vm.define nodeName do |node|
+      #node.vm.memory = "2048"
+      #node.vm.cpus   = "4"
+    end
+  end
+end
